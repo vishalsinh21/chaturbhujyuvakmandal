@@ -34,7 +34,25 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(cors());
+// Middleware - Fix CORS
+const allowedOrigins = [
+  "http://localhost:8080", // local frontend
+  "https://chaturbhujyuvakmandal.vercel.app", // deployed frontend
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    credentials: true,
+  })
+);
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' })); 
 
