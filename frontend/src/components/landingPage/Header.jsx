@@ -77,18 +77,18 @@ const HeaderDisplay = () => {
     return <HeaderSkeleton />;
   }
 
-  function getLinkForMobile(link) {
-    if (link.startsWith("/")) {
-      // example: "/about" => "#about"
-      return "#" + link.slice(1);
-    } else if (link.startsWith("#")) {
-      // ensure absolute hash navigation to root
-      return "/" + link;
-    } else {
-      // external link, leave untouched
-      return link;
-    }
+ function getLinkForMobile(link) {
+  if (link.startsWith("/")) {
+    // normal route, leave as is
+    return link;
+  } else if (link.startsWith("#")) {
+    // convert "#gallery" => "/gallery"
+    return link.replace("#", "/");
+  } else {
+    // external link
+    return link;
   }
+}
 
   const latestLogo = data.logos.length > 0 ? data.logos[0].imageUrl : null;
 
@@ -171,3 +171,4 @@ const HeaderDisplay = () => {
 };
 
 export default HeaderDisplay;
+
