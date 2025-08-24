@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chaturbhuj Yuvak Mandal</title>
+
+    <!-- Default favicon -->
+    <link rel="icon" type="image/png" id="favicon" href="/vite.svg" />
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <!-- Dynamic Favicon Handling Script -->
+    <script type="module">
+      const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+
+      fetch(`${BASE_URL}/get-header-logos`)
+        .then(res => res.json())
+        .then(data => {
+          if (data?.logos?.length > 0) {
+            const latestLogo = data.logos[data.logos.length - 1].imageUrl;
+            const favicon = document.getElementById("favicon");
+            if (favicon) {
+              favicon.href = latestLogo;
+            } else {
+            }
+          } else {
+            console.warn("No logos found in response.");
+          }
+        })
+        .catch(err => console.error("Error loading favicon:", err));
+    </script>
+
+    <!-- React App -->
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
