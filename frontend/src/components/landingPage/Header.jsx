@@ -103,7 +103,7 @@ const HeaderDisplay = () => {
             className="font-bold text-2xl text-gray-800 select-none"
             onCopy={(e) => e.preventDefault()}
           >
-            Chaturbhuj Yuvak Mandal
+            Chaturbhuj Yuvak Mandal Kasor
           </span>
         </a>
 
@@ -171,4 +171,5 @@ const HeaderDisplay = () => {
 };
 
 export default HeaderDisplay;
+
 
