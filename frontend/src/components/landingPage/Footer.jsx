@@ -60,7 +60,7 @@ const FooterDisplay = () => {
       <div className="relative max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
         {/* Logo & Brand */}
         <div>
-          <h2 className="text-3xl font-bold mb-4">Chaturbhuj Yuvak Mandal</h2>
+          <h2 className="text-3xl font-bold mb-4">Chaturbhuj Yuvak Mandal(Kasor)</h2>
           <p className="text-gray-300">
             In the blessings of Bappa, we find strength, service, and togetherness.
           </p>
@@ -118,3 +118,4 @@ const FooterDisplay = () => {
 };
 
 export default FooterDisplay;
+
