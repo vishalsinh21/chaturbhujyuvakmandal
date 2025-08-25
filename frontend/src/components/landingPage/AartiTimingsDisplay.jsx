@@ -11,11 +11,8 @@ const AartiTimingsDisplay = () => {
       setLoading(true);
       try {
         const res = await axiosInstance.get("/aarti-timings");
-        // Filter only Morning and Evening timings
-        const filtered = res.data.filter(timing => 
-          timing.name.toLowerCase() === "morning" || timing.name.toLowerCase() === "evening"
-        );
-        setAartiTimings(filtered);
+        console.log("Fetched timings:", res.data); // Debug log
+        setAartiTimings(res.data); // Store all timings without filter
       } catch (error) {
         console.error("Failed to fetch Aarti Timings", error);
       } finally {
@@ -39,7 +36,7 @@ const AartiTimingsDisplay = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {aartiTimings.map((timing, idx) => (
             <div
-              key={timing._id}
+              key={timing._id || idx}
               className="bg-white p-6 rounded-2xl shadow hover:shadow-xl transition transform hover:-translate-y-1"
             >
               <p className="font-bold text-lg text-gray-800 mb-2">{timing.name}</p>
