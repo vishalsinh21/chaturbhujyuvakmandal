@@ -25,6 +25,7 @@ const GalleryDisplay = () => {
   const [loading, setLoading] = useState(true);
   const [showAll, setShowAll] = useState(false);
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [selectedImage, setSelectedImage] = useState(null); // <-- for modal
 
   useEffect(() => {
     const fetchGallery = async () => {
@@ -50,10 +51,8 @@ const GalleryDisplay = () => {
 
   return (
     <>
-      {/* ✅ Header */}
       <Header />
 
-      {/* ✅ Gallery Section */}
       <section
         id="gallery"
         className="pt-28 pb-16 px-4 bg-gradient-to-tr from-orange-200 via-orange-100 to-orange-100 min-h-[70vh]"
@@ -63,7 +62,6 @@ const GalleryDisplay = () => {
           <p className="text-gray-600 mt-2">Moments we cherish together</p>
         </div>
 
-        {/* Year Filter */}
         <div className="max-w-6xl mx-auto flex justify-center mb-8">
           <select
             value={selectedYear}
@@ -95,7 +93,8 @@ const GalleryDisplay = () => {
               {displayedItems.map((item) => (
                 <div
                   key={item._id}
-                  className="bg-white shadow-lg p-4 flex flex-col items-center rounded-lg transition-transform hover:scale-105 duration-300"
+                  className="bg-white shadow-lg p-4 flex flex-col items-center rounded-lg transition-transform hover:scale-105 duration-300 cursor-pointer"
+                  onClick={() => setSelectedImage(item.image)} // <-- open modal
                 >
                   <img
                     src={item.image}
@@ -125,7 +124,20 @@ const GalleryDisplay = () => {
         )}
       </section>
 
-      {/* ✅ Footer */}
+      {/* Fullscreen Modal */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50"
+          onClick={() => setSelectedImage(null)} // close on click outside
+        >
+          <img
+            src={selectedImage}
+            alt="Full Screen"
+            className="max-h-[90%] max-w-[90%] rounded-lg shadow-lg"
+          />
+        </div>
+      )}
+
       <Footer />
     </>
   );
