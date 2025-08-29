@@ -8,8 +8,8 @@ export const recordVisit = async (req, res) => {
     const path = req.body.path || "unknown";
 
     // Only record if path is '/'
-    if (path !== "/") {
-      return res.status(200).json({ message: "Visit ignored: path not '/'" });
+      if (path !== "/" && path !== "/aarti") {
+      return res.status(200).json({ message: "Visit ignored: path not '/' or '/aarti'" });
     }
 
     const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
@@ -86,4 +86,5 @@ export const getVisitCount = async (req, res) => {
     console.error("Error fetching visit count:", error);
     res.status(500).json({ message: "Error fetching visit count" });
   }
+
 };
