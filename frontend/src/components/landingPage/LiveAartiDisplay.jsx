@@ -46,13 +46,23 @@ const LiveAartiDisplay = () => {
     );
   }
 
-  // Extract YouTube video ID from URL
   const getYoutubeId = (url) => {
-    const regExp =
-      /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-    const match = url.match(regExp);
-    return match && match[2].length === 11 ? match[2] : null;
-  };
+  try {
+    const urlObj = new URL(url);
+    if (urlObj.hostname.includes("youtu.be")) {
+      return urlObj.pathname.slice(1); // youtu.be/VIDEO_ID
+    } else if (urlObj.pathname.startsWith("/live/")) {
+      return urlObj.pathname.split("/live/")[1]; // live/VIDEO_ID
+    } else if (urlObj.searchParams.get("v")) {
+      return urlObj.searchParams.get("v"); // standard watch?v=VIDEO_ID
+    } else if (urlObj.pathname.startsWith("/embed/")) {
+      return urlObj.pathname.split("/embed/")[1]; // embed/VIDEO_ID
+    }
+    return null;
+  } catch {
+    return null;
+  }
+};
 
   const videoId = getYoutubeId(liveAarti.youtubeLink);
 
@@ -95,3 +105,4 @@ const LiveAartiDisplay = () => {
 };
 
 export default LiveAartiDisplay;
+
