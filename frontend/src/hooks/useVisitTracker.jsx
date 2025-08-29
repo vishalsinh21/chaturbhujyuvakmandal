@@ -8,7 +8,7 @@ const useVisitTracker = () => {
   useEffect(() => {
     const recordVisit = async () => {
       try {
-        await axiosInstance.post(`http://localhost:2025/api/visits/record`, {
+        await axiosInstance.post(`https://chaturbhujyuvakmandal.onrender.com/api/visits/record`, {
           path: location.pathname,
           deviceType: window.innerWidth < 768 ? 'Mobile' : 'Desktop',
         });
@@ -22,3 +22,4 @@ const useVisitTracker = () => {
 };
 
 export default useVisitTracker;
+
