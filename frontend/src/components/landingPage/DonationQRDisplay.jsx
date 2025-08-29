@@ -29,8 +29,9 @@ const DonationQRDisplay = () => {
   }, []);
 
   const shareOnWhatsApp = async (qr) => {
+    const message = `🙏 Donate via this QR code: ${qr.bankName || "Bank QR"}\nScan the QR to support our cause!`;
     try {
-      // Try Web Share API (mobile)
+      // Mobile: share image + text
       const response = await fetch(qr.image);
       const blob = await response.blob();
       const file = new File([blob], "DonationQR.png", { type: blob.type });
@@ -38,12 +39,11 @@ const DonationQRDisplay = () => {
       if (navigator.canShare && navigator.canShare({ files: [file] })) {
         await navigator.share({
           files: [file],
-          text: `Donate via this QR code: ${qr.bankName || "Bank QR"}`
+          text: message,
         });
       } else {
-        // fallback: open WhatsApp web with QR image link
-        const message = `Donate via this QR code: ${qr.bankName || "Bank QR"}\nScan the QR to support!\n${qr.image}`;
-        const whatsappURL = `https://wa.me/?text=${encodeURIComponent(message)}`;
+        // Desktop: fallback to WhatsApp web with text + image link
+        const whatsappURL = `https://wa.me/?text=${encodeURIComponent(message + "\n" + qr.image)}`;
         window.open(whatsappURL, "_blank");
       }
     } catch (err) {
@@ -84,7 +84,7 @@ const DonationQRDisplay = () => {
                 <p className="text-sm text-gray-600 mb-3">{qrs[0].bankName || "QR Code"}</p>
 
                 <div className="flex gap-3">
-                  {/* Share button (mobile + fallback) */}
+                  {/* Share button */}
                   <button
                     onClick={() => shareOnWhatsApp(qrs[0])}
                     className="flex items-center gap-2 px-6 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg shadow-md transition"
@@ -92,7 +92,7 @@ const DonationQRDisplay = () => {
                     <FaWhatsapp /> Share on WhatsApp
                   </button>
 
-                  {/* Download button (desktop) */}
+                  {/* Download button */}
                   <a
                     href={qrs[0].image}
                     download={`QR-${qrs[0].bankName || "Donation"}`}
