@@ -26,10 +26,11 @@ const DonorListDisplay = () => {
   }, []);
 
   // Filter donors by selected year and sort by amount ascending
-  const filteredDonors = (selectedYear === "All"
-    ? donors
-    : donors.filter(d => d.date && new Date(d.date).getFullYear() === Number(selectedYear))
-  ).sort((a, b) => a.amount - b.amount);
+const filteredDonors = (selectedYear === "All"
+  ? donors
+  : donors.filter(d => d.date && new Date(d.date).getFullYear() === Number(selectedYear))
+).sort((a, b) => b.amount - a.amount); // descending
+
 
   // Calculate total donations
   const totalDonations = filteredDonors.reduce(
@@ -165,4 +166,5 @@ const DonorListDisplay = () => {
 };
 
 export default DonorListDisplay;
+
 
