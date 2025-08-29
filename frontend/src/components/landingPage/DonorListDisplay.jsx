@@ -40,7 +40,7 @@ const DonorListDisplay = () => {
   // Animate total donations from 0 to max
   useEffect(() => {
     let start = 0;
-    const duration = 1000; // 1 second
+    const duration = 3000; // 1 second
     const increment = totalDonations / (duration / 20); // update every 20ms
 
     const counter = setInterval(() => {
@@ -165,3 +165,4 @@ const DonorListDisplay = () => {
 };
 
 export default DonorListDisplay;
+
