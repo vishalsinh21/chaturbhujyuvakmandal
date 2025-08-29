@@ -47,7 +47,7 @@ const GalleryDisplay = () => {
 
   const displayedItems = showAll
     ? filteredGallery
-    : filteredGallery.slice(0, 3);
+    : filteredGallery.slice(0, 9);
 
   return (
     <>
@@ -150,5 +150,6 @@ const GalleryDisplay = () => {
 };
 
 export default GalleryDisplay;
+
 
 
