@@ -76,14 +76,14 @@ const LiveAartiDisplay = () => {
 
         {videoId ? (
           <div className="w-full max-w-4xl aspect-video mb-6 shadow-lg rounded-xl overflow-hidden">
-            <iframe
-              className="w-full h-full"
-              src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
-              title="Live Aarti"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+           <iframe
+  className="w-full h-full"
+  src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}
+  title="Live Aarti"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen
+></iframe>
           </div>
         ) : (
           <p className="text-gray-500 text-lg mb-6">Invalid YouTube link</p>
@@ -105,4 +105,5 @@ const LiveAartiDisplay = () => {
 };
 
 export default LiveAartiDisplay;
+
 
