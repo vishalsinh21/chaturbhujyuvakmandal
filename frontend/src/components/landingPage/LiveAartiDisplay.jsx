@@ -78,7 +78,7 @@ const LiveAartiDisplay = () => {
           <div className="w-full max-w-4xl aspect-video mb-6 shadow-lg rounded-xl overflow-hidden">
            <iframe
   className="w-full h-full"
-  src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}
+  src={`https://www.youtube.com/embed/${videoId}?&rel=0`}
   title="Live Aarti"
   frameBorder="0"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -105,5 +105,6 @@ const LiveAartiDisplay = () => {
 };
 
 export default LiveAartiDisplay;
+
 
 
