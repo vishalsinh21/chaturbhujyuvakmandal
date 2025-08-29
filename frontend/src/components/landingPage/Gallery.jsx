@@ -125,22 +125,29 @@ const GalleryDisplay = () => {
       </section>
 
       {/* Fullscreen Modal */}
-      {selectedImage && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50"
-          onClick={() => setSelectedImage(null)} // close on click outside
-        >
-          <img
-            src={selectedImage}
-            alt="Full Screen"
-            className="max-h-[90%] max-w-[90%] rounded-lg shadow-lg"
-          />
-        </div>
-      )}
+     {selectedImage && (
+  <div
+    className="fixed inset-0 backdrop-blur-sm bg-opacity-50 flex justify-center items-center z-50"
+  >
+    {/* Close Button */}
+    <button
+      className="absolute top-4 right-4 text-white bg-black bg-opacity-30 px-4 py-2 rounded hover:bg-opacity-50 transition"
+      onClick={() => setSelectedImage(null)}
+    >
+      Close
+    </button>
 
+    <img
+      src={selectedImage}
+      alt="Full Screen"
+      className="max-h-[90%] max-w-[90%] rounded-lg shadow-lg"
+    />
+  </div>
+)}
       <Footer />
     </>
   );
 };
 
 export default GalleryDisplay;
+
