@@ -41,7 +41,7 @@ const filteredDonors = (selectedYear === "All"
   // Animate total donations from 0 to max
   useEffect(() => {
     let start = 0;
-    const duration = 3000; // 1 second
+    const duration = 2000; // 2 second
     const increment = totalDonations / (duration / 20); // update every 20ms
 
     const counter = setInterval(() => {
@@ -166,5 +166,6 @@ const filteredDonors = (selectedYear === "All"
 };
 
 export default DonorListDisplay;
+
 
 
