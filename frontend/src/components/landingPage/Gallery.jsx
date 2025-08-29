@@ -110,7 +110,7 @@ const GalleryDisplay = () => {
               ))}
             </div>
 
-            {!showAll && filteredGallery.length > 3 && (
+            {!showAll && filteredGallery.length > 9 && (
               <div className="mt-10 text-center">
                 <button
                   onClick={() => setShowAll(true)}
@@ -150,4 +150,5 @@ const GalleryDisplay = () => {
 };
 
 export default GalleryDisplay;
+
 
